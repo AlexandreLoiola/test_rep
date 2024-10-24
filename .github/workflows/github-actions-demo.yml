@@ -21,8 +21,12 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.LIGHTSAIL_IP }} >> ~/.ssh/known_hosts
 
+      - name: Create deploy directory
+        run: |
+          ssh ubuntu@${{ secrets.LIGHTSAIL_IP }} 'mkdir -p /home/ubuntu/deploy'
+
       - name: Deploy to Lightsail
         run: |
           echo "Deploying to Lightsail..."
-          scp -r * ubuntu@${{ secrets.LIGHTSAIL_IP }}:/home/ubuntu/
-          ssh ubuntu@${{ secrets.LIGHTSAIL_IP }} 'chmod +x /home/ubuntu/start-your-app.sh && /home/ubuntu/start-your-app.sh'
+          scp -r * ubuntu@${{ secrets.LIGHTSAIL_IP }}:/home/ubuntu/deploy/
+          ssh ubuntu@${{ secrets.LIGHTSAIL_IP }} 'chmod +x /home/ubuntu/deploy/start-your-app.sh && /home/ubuntu/deploy/start-your-app.sh'

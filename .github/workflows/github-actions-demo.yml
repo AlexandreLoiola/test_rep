@@ -22,5 +22,5 @@ jobs:
 
       - name: Deploy to Lightsail
         run: |
-          scp -r ./path/to/your/app ec2-user@${{ secrets.LIGHTSAIL_IP }}:/path/to/deploy/
-          ssh ec2-user@${{ secrets.LIGHTSAIL_IP }} 'cd /path/to/deploy && ./start-your-app.sh'
+          scp -r ./ ec2-user@${{ secrets.LIGHTSAIL_IP }}:/
+          ssh ec2-user@${{ secrets.LIGHTSAIL_IP }} 'cd / && ./start-your-app.sh'

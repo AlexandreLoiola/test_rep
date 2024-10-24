@@ -24,5 +24,5 @@ jobs:
       - name: Deploy to Lightsail
         run: |
           echo "Deploying to Lightsail..."
-          scp -r * ubuntu@${{ secrets.LIGHTSAIL_IP }}:/
-          ssh ubuntu@${{ secrets.LIGHTSAIL_IP }} 'chmod +x /start-your-app.sh && /start-your-app.sh'
+          scp -r * ubuntu@${{ secrets.LIGHTSAIL_IP }}:/home/ubuntu/
+          ssh ubuntu@${{ secrets.LIGHTSAIL_IP }} 'chmod +x /home/ubuntu/start-your-app.sh && /home/ubuntu/start-your-app.sh'

@@ -8,6 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: prod
 
     steps:
       - name: Check out repository code
@@ -23,4 +24,4 @@ jobs:
       - name: Deploy to Lightsail
         run: |
           scp -r ./ ec2-user@${{ secrets.LIGHTSAIL_IP }}:/
-          ssh ec2-user@${{ secrets.LIGHTSAIL_IP }} 'cd / && ./start-your-app.sh'
+          ssh ec2-user@${{ secrets.LIGHTSAIL_IP }} 'chmod +x /start-your-app.sh && /start-your-app.sh'
